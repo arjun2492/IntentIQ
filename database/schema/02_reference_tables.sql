@@ -54,7 +54,7 @@ CREATE TABLE IF NOT EXISTS products (
     product_name VARCHAR(255) NOT NULL,
     model_number VARCHAR(100),
     image_url VARCHAR(500),
-    created_at TIMESTAMP NOT NULL CURRENT_TIMESTAMP,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
     CONSTRAINT fk_products_brand_id
     FOREIGN KEY(brand_id)
@@ -78,14 +78,14 @@ CREATE TABLE IF NOT EXISTS product_listings (
     product_url VARCHAR(1000) NOT NULL,
     listing_status VARCHAR(20) DEFAULT 'Active',
     last_checked_at TIMESTAMP NULL,
-    created_at TIMESTAMP NOT NULL CURRENT_TIMESTAMP,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
     CONSTRAINT fk_product_listings_product_id
     FOREIGN KEY (product_id)
     REFERENCES products(product_id),
 
     CONSTRAINT fk_product_listings_store_id
-    FOREIGN KEY (store_id),
+    FOREIGN KEY (store_id)
     REFERENCES stores(store_id),
 
     CONSTRAINT uq_product_store
