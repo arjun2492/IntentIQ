@@ -14,9 +14,21 @@ Author: Arjun S Nair
 
 from src.database.connection import get_connection
 
+from src.notifications.email_sender import send_email
+from src.notifications.email_templates import (
+    generate_price_drop_subject,
+    generate_price_drop_text,
+    generate_price_drop_html
+    )
+
+# ==========================
+# Fetch Functions
+# ==========================
+
 def fetch_pending_notifications():
     """
-    Fetches all pending notifications.
+    Fetches all pending notifications with the
+    information required to send the notification.
     """
     connection = get_connection()
     cursor = connection.cursor(dictionary=True)
@@ -27,8 +39,11 @@ def fetch_pending_notifications():
             u.email,
             u.whatsapp_number,
             p.product_name,
+            s.store_name,
             lp.price,
-            w.current_target_price
+            w.current_target_price,
+            pl.product_url,
+            n.notification_type
         FROM
             notifications n
         JOIN watchlists w
@@ -42,6 +57,13 @@ def fetch_pending_notifications():
 
         JOIN latest_prices lp
             ON n.price_id = lp.price_id
+        
+        JOIN product_listings pl
+            ON lp.product_id = pl.product_id
+                AND lp.store_id = pl.store_id
+
+        JOIN stores s
+            ON lp.store_id = s.store_id
 
         WHERE 
             n.notification_status = 'Pending'; 
@@ -59,9 +81,9 @@ def fetch_pending_notifications():
 # Update Functions
 # ==========================
 
-def mark_notification_sent(notification_id):
+def update_notification_status(notification_id, status):
     """
-    Marks a notification as sent.
+    Updates the notification delivery status.
     """
     connection =  get_connection()
     cursor = connection.cursor()
@@ -69,12 +91,12 @@ def mark_notification_sent(notification_id):
     query = """
         UPDATE notifications
         SET 
-            notification_status = 'Sent',
+            notification_status = %s,
             sent_at = NOW()
         WHERE
             notification_id = %s;
     """
-    cursor.execute(query, (notification_id,))
+    cursor.execute(query, (status, notification_id,))
     
     connection.commit()
     
@@ -87,7 +109,7 @@ def mark_notification_sent(notification_id):
 
 def dispatch_notifications():
     """
-    Simulates sending pending notifications.
+    Sends all pending email notifications.
     """
     notifications = fetch_pending_notifications()
 
@@ -96,31 +118,58 @@ def dispatch_notifications():
         return
     
     for notification in notifications:
-        
-        print("\n" + "=" * 60)
 
-        print(f"To: {notification['email']}")
+        try: 
+            subject = generate_price_drop_subject(notification)
+            text_body = generate_price_drop_text(notification)
+            html_body = generate_price_drop_html(notification)
+            
+            notification_sent = send_email(
+                notification,
+                subject,
+                text_body,
+                html_body
+                )
+           
 
-        print(f"Whatsapp: {notification['whatsapp_number']}")
+            if notification_sent:
+                update_notification_status(
+                    notification["notification_id"],
+                    "Sent"
+                )
 
-        print()
+                print(
+                    f"Email sent for "
+                    f"{notification['product_name']}"
+                )
 
-        print("Price Alert!")
+            else:
+                update_notification_status(
+                    notification["notification_id"],
+                    "Failed"
+                )
 
-        print(f"Product: {notification['product_name']}")
+                print(
+                    f"Email failed for "
+                    f"{notification['product_name']}"
+                )
 
-        print(f"Current Price: ₹{notification['price']}")
+        except Exception as e:
 
-        print(f"Your Target Price:₹{notification['current_target_price']}")
+            update_notification_status(
+                notification["notification_id"],
+                "Failed"
+            )
 
-        print("Your target price has been reached!")
+            print(
+                f"Failed: "
+                f"{notification['product_name']}"
+            )
 
-        print('='* 60)
+            print(e)
 
-        # Simulate successful delivery
-        mark_notification_sent(
-            notification["notification_id"]
-        )
+
+
 
 # ==========================
 # Main

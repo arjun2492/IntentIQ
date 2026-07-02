@@ -5,7 +5,8 @@ IntentIQ
 File: 01_latest_prices.sql
 
 Description:
-Fetches the latest price of watchlisted product.
+Returns the most recent price for each product
+across every supported store
 
 Author: Arjun S Nair
 ==========================================================
