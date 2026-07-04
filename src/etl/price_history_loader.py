@@ -1,4 +1,6 @@
 from src.database.connection import get_connection
+from src.config.logger import logger
+
 
 def fetch_raw_scrape_data():
     """
@@ -66,10 +68,19 @@ def load_price_history(records):
 
     print(f"Inserted {len(values)} records into price_history.")
 
+    logger.info(
+    f"Inserted {len(values)} records into price_history."
+)
+    
+
 def main():
     records = fetch_raw_scrape_data()
 
     print(f"Found {len(records)} records.")
+
+    logger.info(
+    f"Found {len(records)} records for price history loading."
+    )
 
     load_price_history(records)
 

@@ -1,4 +1,5 @@
 from src.database.connection import get_connection
+from src.config.logger import logger
 
 # ==========================
 # Fetch Functions
@@ -38,6 +39,10 @@ def fetch_price_alerts():
     cursor.close()
     connection.close()
 
+    logger.info(
+        f"Found {len(alerts)} eligible price alert(s)."
+        )
+
     return alerts
 
 # ==========================
@@ -50,6 +55,7 @@ def insert_notifications(alerts):
     """
     if not alerts:
         print("No notifications to create.")
+        logger.info("No notifications to create.")
         return
     
     connection = get_connection()
@@ -91,6 +97,10 @@ def insert_notifications(alerts):
 
     print(f"Inserted {cursor.rowcount} notification(s).")
 
+    logger.info(
+        f"Inserted {cursor.rowcount} notification(s)."
+        )
+
     cursor.close()
     connection.close() 
 
@@ -99,11 +109,17 @@ def insert_notifications(alerts):
 # ==========================
 
 def main():
-    alerts = fetch_price_alerts()
+    
+    try:
+        alerts = fetch_price_alerts()
+        
+        insert_notifications(alerts)
 
-    print(alerts)
-
-    insert_notifications(alerts)
+    except Exception:
+        logger.exception(
+            "Notification engine failed."
+        )
+        raise
 
 if __name__ == "__main__":
     main()

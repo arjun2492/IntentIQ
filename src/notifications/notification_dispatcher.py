@@ -13,6 +13,7 @@ Author: Arjun S Nair
 """
 
 from src.database.connection import get_connection
+from src.config.logger import logger
 
 from src.notifications.email_sender import send_email
 from src.notifications.email_templates import (
@@ -143,6 +144,13 @@ def dispatch_notifications():
                     f"{notification['product_name']}"
                 )
 
+                logger.info(
+                    f"Email sent to "
+                    f"{notification['email']} "
+                    f"for "
+                    f"{notification['product_name']}"
+                    )
+
             else:
                 update_notification_status(
                     notification["notification_id"],
@@ -153,6 +161,11 @@ def dispatch_notifications():
                     f"Email failed for "
                     f"{notification['product_name']}"
                 )
+
+                logger.error(
+                    f"Email failed for "
+                    f"{notification['product_name']}"
+                    )
 
         except Exception as e:
 
@@ -165,6 +178,11 @@ def dispatch_notifications():
                 f"Failed: "
                 f"{notification['product_name']}"
             )
+
+            logger.exception(
+                 f"Dispatcher failed for "
+                 f"{notification['product_name']}"
+                 )
 
             print(e)
 
