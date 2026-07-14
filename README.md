@@ -1,5 +1,37 @@
 # DemandTrigger
 ### End-to-End Price Intelligence & Demand Analytics Platform
+An analytics engineering platform that transforms retailer price data into actionable consumer and brand intelligence.
+
+<p align="left">
+  <img src="https://img.shields.io/badge/Python-3.13-blue?logo=python&logoColor=white" />
+  <img src="https://img.shields.io/badge/MySQL-8.0-4479A1?logo=mysql&logoColor=white" />
+  <img src="https://img.shields.io/badge/Power%20BI-Dashboard-F2C811?logo=powerbi&logoColor=black" />
+  <img src="https://img.shields.io/badge/Playwright-Web%20Scraping-2EAD33?logo=playwright&logoColor=white" />
+  <img src="https://img.shields.io/badge/Email-SMTP-orange" />
+  <img src="https://img.shields.io/badge/License-MIT-green.svg" />
+  
+</p>
+
+## Table of Contents
+
+- [Business Problem](#business-problem)
+- [Solution Overview](#solution-overview)
+- [System Architecture](#system-architecture)
+- [Key Features](#key-features)
+- [Technology Stack](#technology-stack)
+- [Project Structure](#project-structure)
+- [Data Pipeline](#data-pipeline)
+- [Database Design](#database-design)
+- [Data Platform Design](#data-platform-design)
+- [Semantic Analytics Layer](#semantic-analytics-layer)
+- [Power BI Dashboards](#-power-bi-dashboards)
+- [Notification Engine](#notification-engine)
+- [Getting Started](#-getting-started)
+- [Future Enhancements](#-future-enhancements)
+- [Lessons Learned](#-lessons-learned)
+- [Author](#-author)
+
+
 
 DemandTrigger is an end-to-end analytics engineering platform that empowers **consumers to make smarter purchasing decisions** and enables **brands to better understand customer price demand** through real-time price intelligence and historical analytics.
 
@@ -41,11 +73,11 @@ This unified architecture serves two distinct user groups:
 
 ## System Architecture
 
-IntentIQ follows a modular, end-to-end analytics architecture that transforms raw retailer price data into actionable business intelligence.
+DemandTrigger follows a modular, end-to-end analytics architecture that transforms raw retailer price data into actionable business intelligence.
 
 The platform is designed around independent yet connected layers, enabling data collection, transformation, semantic modeling, automated notifications, and interactive analytics while maintaining a clean separation of responsibilities.
 
-From a single scraping pipeline, IntentIQ serves two distinct user experiences:
+From a single scraping pipeline, DemandTrigger serves two distinct user experiences:
 
 - **Consumer Intelligence**, enabling users to monitor products, compare retailer prices, and receive automated price-drop notifications.
 - **Brand Intelligence**, providing demand insights, target-price analysis, and retailer pricing comparisons to support business decision-making.
@@ -54,6 +86,7 @@ From a single scraping pipeline, IntentIQ serves two distinct user experiences:
 
 <p align="center">
   <img src="dashboard/screenshots/architecture.png" width="900">
+
 </p>
 
 ## Key Features
@@ -297,6 +330,7 @@ The database was designed around the following engineering principles:
 
 <p align="center">
   <img src="dashboard/screenshots/data_platform_design.png" width="1000">
+
 </p>
 
 ## Semantic Analytics Layer
@@ -318,7 +352,7 @@ Rather than querying transactional tables directly, DemandTrigger introduces a s
 - Consistent KPI definitions
 - Separation of operational and reporting workloads
 
-# 📊 Power BI Dashboards
+## 📊 Power BI Dashboards
 
 DemandTrigger delivers business intelligence through two purpose-built Power BI dashboards, each designed for a distinct user persona.
 
@@ -343,6 +377,7 @@ Key design principles include:
 
 <p align="center">
   <img src="dashboard/screenshots/consumer_dashboard.jpg" width="1000">
+
 </p>
 
 
@@ -368,6 +403,7 @@ The Consumer Intelligence Dashboard helps shoppers identify the best time and pl
 
 <p align="center">
   <img src="dashboard/screenshots/brand_dashboard.jpg" width="1000">
+
 </p>
 
 
@@ -396,6 +432,7 @@ This event-driven workflow enables consumers to monitor product prices without m
 
 ### Notification Workflow
 
+```text
 User creates a Watchlist
         ↓
 Sets Target Price
@@ -407,6 +444,7 @@ Notification Engine Evaluation
 Price ≤ Target Price
         ↓
 HTML Email Notification Sent
+```
 
 ### Key Capabilities
 
@@ -420,9 +458,10 @@ HTML Email Notification Sent
 
 <p align="center">
   <img src="dashboard/screenshots/notification_email.png" width="900">
+
 </p>
 
-# 🚀 Getting Started
+## 🚀 Getting Started
 
 Follow the steps below to set up and run **DemandTrigger** on your local machine.
 
@@ -575,41 +614,29 @@ Refresh the report after the pipeline completes successfully to visualize the la
 
 ```text
 Clone Repository
-        │
-        ▼
+        ↓
 Configure Environment
-        │
-        ▼
+        ↓
 Create Database
-        │
-        ▼
+        ↓
 Execute Schema Scripts
-        │
-        ▼
+        ↓
 Seed Reference Data
-        │
-        ▼
+        ↓
 Create SQL Views
-        │
-        ▼
+        ↓
 Run Pipeline
-        │
-        ▼
+        ↓
 Web Scraping
-        │
-        ▼
+        ↓
 ETL Processing
-        │
-        ▼
+        ↓
 Historical Price Storage
-        │
-        ▼
+        ↓
 Notification Engine
-        │
-        ▼
+        ↓
 Semantic Analytics Layer
-        │
-        ▼
+        ↓
 Power BI Dashboards
 ```
 
@@ -617,7 +644,7 @@ Power BI Dashboards
 >
 > DemandTrigger ships with demonstration data to showcase the complete analytics workflow. The platform has been designed with a modular architecture, allowing additional retailers, notification channels, scheduled execution, APIs, and cloud deployment to be integrated with minimal changes.
 
-# 🚀 Future Enhancements
+## 🚀 Future Enhancements
 
 DemandTrigger has been designed with a modular architecture, allowing new capabilities to be integrated with minimal changes to the existing pipeline.
 
@@ -633,7 +660,7 @@ Planned enhancements include:
 - Real-time monitoring and pipeline health dashboards
 
 
-# 💡 Lessons Learned
+## 💡 Lessons Learned
 
 Building DemandTrigger provided hands-on experience in designing an end-to-end analytics engineering platform that bridges data engineering, business intelligence, and product thinking.
 
@@ -648,7 +675,7 @@ Some of the key learnings from this project include:
 
 This project reinforced the importance of combining engineering best practices with business understanding to build scalable and maintainable analytics solutions.
 
-# 👨‍💻 Author
+## 👨‍💻 Author
 
 **Arjun S Nair**
 
@@ -656,7 +683,7 @@ Associate Product Manager | Analytics Engineering | Business Intelligence
 
 - GitHub: https://github.com/arjun2492
 - LinkedIn: https://www.linkedin.com/in/arjun-s-nair-b2477598/
-- Gmail: arjun2492@gmail.com
+- Email: arjun2492@gmail.com
 
 If you found this project interesting or have suggestions for improvement, feel free to connect or reach out.
 
