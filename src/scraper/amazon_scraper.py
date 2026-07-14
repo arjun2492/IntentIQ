@@ -1,6 +1,6 @@
 """
 ==========================================================
-IntentIQ
+DemandTrigger
 
 File: amazon_scraper.py
 

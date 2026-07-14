@@ -1,6 +1,6 @@
 """
 ==========================================================
-IntentIQ
+DemandTrigger
 
 File: notification_dispatcher.py
 

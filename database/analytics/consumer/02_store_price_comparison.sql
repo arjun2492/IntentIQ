@@ -1,6 +1,6 @@
 /*
 ==========================================================
-IntentIQ
+DemandTrigger
 
 File: 02_store_price_comparison.sql
 

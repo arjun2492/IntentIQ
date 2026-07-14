@@ -1,6 +1,6 @@
 /*
 ==========================================================
-IntentIQ
+DemandTrigger
 
 File: 01_watchlist_summary.sql
 

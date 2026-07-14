@@ -2,7 +2,7 @@
 
 ## Overview
 
-The Analytics Layer provides business-ready SQL views that power the IntentIQ dashboards.
+The Analytics Layer provides business-ready SQL views that power the DemandTrigger  dashboards.
 
 Instead of querying transactional tables directly, reporting tools such as Power BI connect to these views to ensure consistent, reusable, and simplified analytics.
 

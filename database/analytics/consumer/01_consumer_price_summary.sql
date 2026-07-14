@@ -1,6 +1,6 @@
 /*
 ==========================================================
-IntentIQ
+DemandTrigger
 
 File: 01_consumer_price_summary.sql
 

@@ -1,6 +1,6 @@
 /*
 ==========================================================
-IntentIQ
+DemandTrigger
 
 File: 03_dim_stores.sql
 

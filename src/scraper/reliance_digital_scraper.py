@@ -1,6 +1,6 @@
 """
 ==========================================================
-IntentIQ
+DemandTrigger
 
 File: reliance_digital_scraper.py
 

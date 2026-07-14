@@ -1,6 +1,6 @@
 """
 ==========================================================
-IntentIQ
+DemandTrigger
 
 File: flipkart_scraper.py
 

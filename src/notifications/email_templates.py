@@ -1,6 +1,6 @@
 """
 ==========================================================
-IntentIQ
+DemandTrigger
 
 File: email_templates.py
 
@@ -56,7 +56,7 @@ Product Link:
 
 Happy shopping!
 
-- IntentIQ
+- DemandTrigger
 
 """
 
@@ -83,7 +83,7 @@ border-radius:10px;
 ">
 
 <h1 style="color:#2563eb;">
-🎯 IntentIQ
+🎯 DemandTrigger
 </h1>
 
 <h2>
@@ -168,7 +168,7 @@ font-size:13px;
 color:#777;
 ">
 
-Thank you for using IntentIQ.
+Thank you for using DemandTrigger. Happy shopping!
 
 </p>
 

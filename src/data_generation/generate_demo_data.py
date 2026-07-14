@@ -1,11 +1,10 @@
 """
 ==========================================================
-IntentIQ
-
+DemandTrigger
 File: generate_demo_data.py
 
 Description:
-Generates realistic demo data for IntentIQ.
+Generates realistic demo data for DemandTrigger.
 
 Author: Arjun S Nair
 ==========================================================

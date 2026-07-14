@@ -1,6 +1,6 @@
 """
 ==========================================================
-IntentIQ
+DemandTrigger
 
 File: email_sender.py
 
@@ -102,9 +102,9 @@ if __name__ == "__main__":
         body="""
 Congratulations!
 
-Your IntentIQ email notification system is working successfully.
+Your DemandTrigger email notification system is working successfully.
 
-- IntentIQ
+- DemandTrigger
 """
 
     )        
